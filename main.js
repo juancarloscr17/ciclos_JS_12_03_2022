@@ -1,20 +1,22 @@
 
 let data = new Array(5).fill(null);
 Object.preventExtensions(data);
-data[4] = "Juan";
-console.log(data);
-
-console.log("Indice");
-for(let i in data){
-    console.log(`${i}.`);
-}
-console.log("Valor");
-for(let v of data){
-    console.log(`${v}`);
-}
-console.log("Indice y Valor");
-for(let [indice,valor] of Object.entries(data)){
-    console.log(`${indice} = ${valor}`);
-}
+data.fill("Juan",4)
 
 
+data.forEach(function(v,i,clone){
+    console.log(i);
+});
+
+
+addEventListener("submit", function(e){
+    Array.from(e.target).forEach(element=>{
+        if(element.nodeName != "BUTTON"){
+            console.log(element.value);
+        }else{
+            console.log(element.dataset.envio);
+        }
+    })
+    e.preventDefault()
+    
+});
