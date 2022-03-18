@@ -1,16 +1,28 @@
 
-let data = new Array(5).fill(null);
-Object.preventExtensions(data);
-data.fill("Miguel", 4);
+function saldar() {
+    return "Hola Como estas";
+}
+let data = {
+    nombre: "Juan",
+    apellido : "Coronel",
+    edad: 36,
+    saldar
+}
 
-
-let datos = data.map(function(v,i){
-    if(v == null){
-        return i+2;
+let datos = Object.entries(data).map(function(elemt){
+    let obj = {};
+    if(typeof(elemt[1]) == "function"){
+        obj.saludar = data.saldar();
     }else{
-        return v;
+        if(elemt[0] == "nombre"){
+            obj[elemt[0]] = `${elemt[1].toUpperCase()} Carlos`;
+        }else{
+            obj[elemt[0]] = elemt[1];
+        }
     }
+    return obj;
 })
 
 console.log(data);
-console.log(datos);
+console.log(Object.assign({}, ...datos) );
+
